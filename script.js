@@ -1,58 +1,84 @@
-const currentClick = 1;
-const getClickDigit = () =>{
-    // set currentClick and return
+let currentClick = 1;
 
+const buttons = document.getElementsByTagName('button');
+
+const getClickDigit = () => {
+
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', () => {
+    console.log(currentClick);
+            currentClick = buttons[i].innerText;
+            
+            alert(currentClick);
+            handleClicks();
+        })
+    }
+
+
+    // set currentClick and return
 }
 const storedClicks = [];
-const handleClicks = () =>{
-    getClickDigit();
-    if(currentClick == '='){
+const handleClicks = () => {
+
+    if (currentClick == "=") {
         displaySolution();
-        return false;
+        return;
     }
-    if(currentClick == 'C'){
+    if (currentClick == '%') {
+        storedClicks.push(currentClick);
+        displaySolution();
+        return;
+    }
+    if (currentClick == 'C') {
         clearScreenAndReset();
-        return false;
+        return;
+    }
+    if (currentClick == '&lArr;') {
+        backSpace();        
+        alert();
+        return;
     }
     storedClicks.push(currentClick);
     displayDigits();
     return true;
 }
-
-const displayDigits = () =>{
+const backSpace = () => {
+    storedClicks.pop();
+}
+const displayDigits = () => {
     // display storedClicks on small screen
 }
 
-const computeSolution = () =>{
+const computeSolution = () => {
     // convert storedClicks to Computable maths and get answer
 }
 
-const displaySolution = () =>{
-   if(computeSolution()) {
-    // display answer on large screen
+const displaySolution = () => {
+    if (computeSolution()) {
+        // display answer on large screen
 
-   }
-   else{
-       displayError();
-   }
+    }
+    else {
+        displayError();
+    }
 }
 
-const determineErrorType = () =>{
+const determineErrorType = () => {
     // use the global stored clicks var or computeSolution function to do this 
 }
 
-const displayError = () =>{
+const displayError = () => {
     determineErrorType();
 
     //display on screen based on error type
 }
 
-const clearScreenAndReset = () =>{
+const clearScreenAndReset = () => {
 
 }
 
-const runApp = () =>{
-    handleClicks(); 
+const runApp = () => {
+    getClickDigit();
 }
 
 runApp();
