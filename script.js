@@ -100,6 +100,8 @@ const computeSolution = () => {
             
             let returnValue = isNaN(total) ? false : total;
             if (!returnValue) errorTypeVar = 'Math Error';
+
+            if (currentClick == '%') returnValue = returnValue/100;
             return returnValue;
         }
     }
