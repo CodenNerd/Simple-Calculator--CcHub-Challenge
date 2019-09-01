@@ -52,6 +52,7 @@ div.screen-lg{
     font-size: 4em;
     font-weight: bolder;
     padding-top: 50px; 
+    overflow: hidden;
 }
 div.screen-sm{
     font-size: 20px;
